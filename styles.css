@@ -1,0 +1,37 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #211728; 
+}
+
+.ends{
+    flex: 1;
+}
+
+.content{
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+#container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    min-width: 4rem;
+    min-height: 6.5rem;
+}
+
+.gridItem{
+    padding: 1rem;
+    text-align: center;
+    color: #BC945A;
+    background-color: #836C5A;
+    border: 1px solid #211728
+}
+
+#key\={
+    grid-column: 3/5;
+}
