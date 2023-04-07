@@ -29,7 +29,8 @@ body{
     text-align: center;
     color: #BC945A;
     background-color: #836C5A;
-    border: 1px solid #211728
+    border: 1px solid #211728;
+    user-select: none;
 }
 
 #key\={
