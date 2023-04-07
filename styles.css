@@ -14,7 +14,17 @@ body{
 .content{
     flex: 1;
     display: flex;
-    align-items: center;
+    align-items: stretch;
+    flex-direction: column;
+    text-align: center;
+}
+
+#display{
+    padding: 1rem;
+    background-color: #969693;
+    color: #211728;
+    font-size: 2rem;
+    border: 1px solid #211728;
 }
 
 #container{
