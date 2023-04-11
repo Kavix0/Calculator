@@ -8,6 +8,7 @@ const equalsButton = document.querySelector("[data-type = 'equals']");
 const decimalButton = document.querySelector("[data-type = 'decimal'");
 const clearButton = document.querySelector("[data-type = 'clear'");
 const backButton = document.querySelector("[data-type = 'backspace'");
+const display = document.getElementById("display");
 
 numberButtons.forEach((e) => {
     e.addEventListener('click', appendNumber);
@@ -29,14 +30,14 @@ function appendNumber(){
         rOperand += this.id;
     }
 
-    console.log(lOperand + ` ${operator} ` + rOperand);
+    display.innerHTML = lOperand + ` ${operator} ` + rOperand;
 }
 
 function changeOperator(){
     if(lOperand != '') {
         operator = this.id;
     }
-    console.log(lOperand + ` ${operator} ` + rOperand);
+    display.innerHTML = lOperand + ` ${operator} ` + rOperand;
 }
 
 function calculateResult(){
@@ -45,7 +46,7 @@ function calculateResult(){
         operator = '';
         rOperand = '';
     }
-    console.log(lOperand);
+    display.innerHTML = lOperand;
 }
 
 function backspace(){
@@ -53,16 +54,20 @@ function backspace(){
         rOperand = rOperand.substring(0, rOperand.length-1);
     }else if(operator !==''){
         operator = '';
-    }else if(lOperand !== ''){
+    }else if(lOperand !== '' && lOperand.length !== 1){
         lOperand = lOperand.substring(0, lOperand.length-1);
+    }else if(lOperand.length == 1){
+        lOperand = '0';
     }
-    console.log(lOperand + ` ${operator} ` + rOperand);
+    display.innerHTML = lOperand + ` ${operator} ` + rOperand;
 }
 
 function clearScreen(){
-    lOperand = '';
+    lOperand = '0';
     operator = '';
     rOperand = '';
+
+    display.innerHTML = lOperand + ` ${operator} ` + rOperand;
 }
 
 function appendDecimal(){
@@ -75,7 +80,7 @@ function appendDecimal(){
     }else if(lOperand == ''){
         lOperand = '0.';
     }
-    console.log(lOperand + ` ${operator} ` + rOperand);
+    display.innerHTML = lOperand + ` ${operator} ` + rOperand;
 }
 
 function operate(num1, sign, num2)
@@ -94,22 +99,26 @@ function operate(num1, sign, num2)
     }
 }
 
+Number.prototype.round = function(decimals) {
+    return Number((Math.round(this + "e" + decimals)  + "e-" + decimals));
+}
+
 function add(num1, num2){
-    return Number(num1) + Number(num2);
+    return (Number(num1) + Number(num2)).round(3);
 }
 
 function subtract(num1, num2){
-    return num1 - num2;
+    return +(num1 - num2).round(3);
 }
 
 function multiply(num1, num2){
-    return num1 * num2;
+    return +(num1 * num2).round(3);
 }
 
 function divide(num1, num2){
-    return (Number(num2) === 0) ? 'Division by 0' : (num1 / num2);
+    return (Number(num2) === 0) ? 'Division by 0' : +(num1 / num2).round(3);
 }
 
 function modulus(num1, num2){
-    return num1 % num2;
+    return +(num1 % num2).round(3);
 }
