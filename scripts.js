@@ -18,11 +18,9 @@ operatorButtons.forEach((e) => {
 });
 
 equalsButton.addEventListener('click', calculateResult);
-/*
-decimalButton.addEventListener('click', appendDecimal);
 clearButton.addEventListener('click', clearScreen);
 backButton.addEventListener('click', backspace);
-*/
+decimalButton.addEventListener('click', appendDecimal);
 
 function appendNumber(){
     if(operator == ''){
@@ -35,15 +33,49 @@ function appendNumber(){
 }
 
 function changeOperator(){
-    operator = this.id;
+    if(lOperand != '') {
+        operator = this.id;
+    }
     console.log(lOperand + ` ${operator} ` + rOperand);
 }
 
 function calculateResult(){
-    lOperand = operate(lOperand, operator, rOperand);
+    if(lOperand !== '' && operator !== '' && rOperand !== ''){
+        lOperand = operate(lOperand, operator, rOperand).toString();
+        operator = '';
+        rOperand = '';
+    }
+    console.log(lOperand);
+}
+
+function backspace(){
+    if(rOperand !== ''){
+        rOperand = rOperand.substring(0, rOperand.length-1);
+    }else if(operator !==''){
+        operator = '';
+    }else if(lOperand !== ''){
+        lOperand = lOperand.substring(0, lOperand.length-1);
+    }
+    console.log(lOperand + ` ${operator} ` + rOperand);
+}
+
+function clearScreen(){
+    lOperand = '';
     operator = '';
     rOperand = '';
-    console.log(lOperand);
+}
+
+function appendDecimal(){
+    if(rOperand !== '' && !rOperand.includes('.')){
+        rOperand += '.';
+    }else if(rOperand == '' && operator !== ''){
+        rOperand = '0.';
+    }else if(lOperand !== '' && !lOperand.includes('.')){
+        lOperand += '.';
+    }else if(lOperand == ''){
+        lOperand = '0.';
+    }
+    console.log(lOperand + ` ${operator} ` + rOperand);
 }
 
 function operate(num1, sign, num2)
