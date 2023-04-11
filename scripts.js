@@ -1,7 +1,6 @@
-let currentInput = '';
-let lOperand = 0;
+let lOperand = '';
 let operator = '';
-let rOperand = 0;
+let rOperand = '';
 
 const numberButtons = [...document.querySelectorAll("[data-type = 'number']")];
 const operatorButtons = [...document.querySelectorAll("[data-type = 'operator']")];
@@ -11,21 +10,33 @@ const clearButton = document.querySelector("[data-type = 'clear'");
 const backButton = document.querySelector("[data-type = 'backspace'");
 
 numberButtons.forEach((e) => {
-e.addEventListener('click', appendNumber(e));
+e.addEventListener('click', appendNumber);
 });
 
-/*
 operatorButtons.forEach((e) => {
     e.addEventListener('click', changeOperator);
 });
-
+/*
 equalsButton.addEventListener('click', calculateResult);
 decimalButton.addEventListener('click', appendDecimal);
 clearButton.addEventListener('click', clearScreen);
 backButton.addEventListener('click', backspace);
 */
 
-function appendNumber(e){
+function appendNumber(){
+    if(operator == ''){
+        lOperand += this.id;
+    }else{
+        rOperand += this.id;
+    }
+
+    console.log(lOperand + operator + rOperand);
+}
+
+function changeOperator(){
+    operator = this.id;
+    console.log(lOperand + operator + rOperand);
+
 }
 
 function operate(num1, sign, num2)
