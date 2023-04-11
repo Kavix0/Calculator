@@ -24,16 +24,34 @@ backButton.addEventListener('click', backspace);
 decimalButton.addEventListener('click', appendDecimal);
 
 function appendNumber(){
+   if(lOperand == 'Division by 0' || lOperand == 'NaN'){
+    clearScreen();
+   }
+
     if(operator == ''){
-        lOperand += this.id;
-    }else{
-        rOperand += this.id;
+        if(lOperand.includes('.')){
+            lOperand += this.id;
+        }else{
+            lOperand = parseInt((lOperand += this.id), 10).toString();
+        }
+    }else if(operator !== '')
+    {
+        if(rOperand.includes('.')){
+            rOperand += this.id;
+        }else{
+            rOperand = parseInt((rOperand += this.id), 10).toString();
+        }
     }
 
     display.innerHTML = lOperand + ` ${operator} ` + rOperand;
 }
 
 function changeOperator(){
+    if(lOperand == 'Division by 0' || lOperand == 'NaN'){
+        clearScreen();
+        return;
+    }
+
     if(lOperand != '') {
         operator = this.id;
     }
@@ -50,6 +68,11 @@ function calculateResult(){
 }
 
 function backspace(){
+    if(lOperand == 'Division by 0' || lOperand == 'NaN'){
+        clearScreen();
+        return;
+    }
+    
     if(rOperand !== ''){
         rOperand = rOperand.substring(0, rOperand.length-1);
     }else if(operator !==''){
