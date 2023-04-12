@@ -1,4 +1,4 @@
-let lOperand = '';
+let lOperand = '0';
 let operator = '';
 let rOperand = '';
 
