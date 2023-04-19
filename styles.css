@@ -27,6 +27,7 @@ body{
     width: 100%;
     background-color: #F5F5F5;
     padding: 1rem;
+    border-radius: .5rem;
 }
 
 #display{
@@ -38,6 +39,7 @@ body{
     border: 1px solid #211728;
     margin-bottom: .5rem;
     user-select: none;
+    border-radius: .5rem;
 }
 
 #container{
@@ -73,6 +75,7 @@ body{
     border: 1px solid #211728;
     user-select: none;
     font-family: 'Helvetica';
+    border-radius: .5rem;
 }
 
 button.gridItem:hover{
